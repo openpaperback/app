@@ -26,6 +26,21 @@ a {
   color: inherit;
 }
 
+.subtitle {
+  color: #aaa;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+
 code {
   font-family: menlo, inconsolata, monospace;
   font-size: calc(1em - 2px);
@@ -39,4 +54,20 @@ code {
   body {
     font-size: 16px;
   }
+}
+
+.read img {
+  display: none;
+}
+
+.read > * {
+  width: 100% !important;
+}
+
+.read pre {
+  font-size: 14px;
+}
+
+.read .blockquote {
+  margin: 0;
 }

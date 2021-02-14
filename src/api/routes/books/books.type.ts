@@ -19,14 +19,15 @@ export interface Book extends Document {
   rights: string;
   subjects: string[];
   bookshelves: string[];
+  isEnriched: boolean;
   enriched?: EnrichedBook;
 }
 
-export interface GoogleResponse {
+export type GoogleResponse = {
   items: { volumeInfo: GoogleVolume }[];
-}
+};
 
-export interface GoogleVolume {
+export type GoogleVolume = {
   title: string;
   authors: string[];
   publisher: string;
@@ -54,7 +55,7 @@ export interface GoogleVolume {
   previewLink: string;
   infoLink: string;
   canonicalVolumeLink: string;
-}
+};
 
 export interface EnrichedBook {
   title: string;
@@ -80,5 +81,10 @@ export type ListRequest = Request<
     limit: string;
     sort: string;
     sortDir: string;
+    search: string;
   }
 >;
+
+export type GetRequest = Request<{ bookId: string }, unknown, unknown, unknown>;
+
+export type ReadRequest = Request<{ bookId: string }, unknown, unknown, unknown>;

@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import type { Book } from "./books.type";
+import mongoose_fuzzy_searching from "mongoose-fuzzy-searching";
 
 const BookSchema = new Schema({
   gutenberg_id: Number,
@@ -14,6 +15,7 @@ const BookSchema = new Schema({
   rights: String,
   subjects: [String],
   bookshelves: [String],
+  isEnriched: Boolean,
   enriched: {
     title: String,
     authors: [{ type: String, minimize: true }],
@@ -25,5 +27,7 @@ const BookSchema = new Schema({
     thumbnail: String,
   },
 });
+
+BookSchema.plugin(mongoose_fuzzy_searching, { fields: ["title", "author"] });
 
 export const BookModel = mongoose.model<Book>("Book", BookSchema);

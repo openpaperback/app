@@ -2,8 +2,9 @@ import sirv from "sirv";
 import express from "express";
 import compression from "compression";
 import * as sapper from "@sapper/server";
-import { bookRoutes } from "./api/routes/books/books.routes";
 import mongoose from "mongoose";
+import morgan from "morgan";
+import { router } from "./api/routes";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
@@ -13,8 +14,9 @@ const app = express();
 async function main() {
   await establishDatabase();
 
-  app.get("/api/book", bookRoutes.list);
+  router(app);
 
+  app.use(morgan("tiny"));
   app.use(compression({ threshold: 0 }));
   app.use(sirv("static", { dev }));
   app.use(sapper.middleware());

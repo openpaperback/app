@@ -1,16 +1,25 @@
 <script lang="ts">
+  import { goto } from "@sapper/app";
+
   export let segment: string;
+  let search = "";
+
+  const onKeyPress = (e: KeyboardEvent) => {
+    if (e.key === "Enter" && search != "" && search.length > 3) {
+      goto(`/search/${search}`);
+    }
+  };
 </script>
 
 <nav>
   <ul>
     <li>
-      <div class="logo">gutenplus</div>
+      <a class="logo" href="/">gutenplus</a>
     </li>
   </ul>
   <div class="search">
     <i class="fas fa-search" />
-    <input type="text" />
+    <input type="text" on:keypress={onKeyPress} bind:value={search} />
   </div>
   <ul>
     <li>
@@ -61,8 +70,11 @@
       border-left: 1px solid rgba(0, 0, 0, 0.1);
       border-right: 1px solid rgba(0, 0, 0, 0.1);
       padding-left: 60px;
-      font-size: 1.5em;
       box-sizing: border-box;
+      font-weight: 300;
+      font-family: "Open Sans";
+      line-height: 1.5;
+      font-size: 16px;
 
       &:focus {
         outline: none;
