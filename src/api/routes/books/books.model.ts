@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 import type { Book } from "./books.type";
-import mongoose_fuzzy_searching from "mongoose-fuzzy-searching";
 
 const BookSchema = new Schema({
   gutenberg_id: Number,
@@ -28,6 +27,6 @@ const BookSchema = new Schema({
   },
 });
 
-BookSchema.plugin(mongoose_fuzzy_searching, { fields: ["title", "author"] });
+BookSchema.index({ title: "text", author: "text" });
 
 export const BookModel = mongoose.model<Book>("Book", BookSchema);

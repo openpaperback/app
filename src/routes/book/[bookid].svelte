@@ -14,6 +14,8 @@
   import Button from "../../components/Button.svelte";
 
   export let book: Book;
+
+  $: tags = [...book.enriched.categories, ...book.bookshelves];
 </script>
 
 <div class="book-details">
@@ -24,6 +26,15 @@
     <p class="author subtitle m0">{book.enriched.authors[0]}</p>
     <h1 class="title serif">{book.enriched.title}</h1>
     <div>{book.enriched.description}</div>
+
+    <div class="tags">
+      {#each tags as tag, i}
+        {#if i != 0}
+          <span>{" "}/{" "}</span>
+        {/if}
+        {tag}
+      {/each}
+    </div>
 
     <div class="mt10">
       <Button href="/book/{book._id}/read" type="primary">Read now</Button>
@@ -43,6 +54,12 @@
     .right-side {
       width: 66.666%;
     }
+  }
+
+  .tags {
+    color: #aaa;
+    text-transform: uppercase;
+    margin-top: 20px;
   }
 
   .author {

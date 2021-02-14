@@ -7,7 +7,7 @@
 <a class="book" href={`/book/${book._id}`}>
   <div class="cover" style="background-image: url({book.enriched.thumbnail || ''})" alt="Book cover" />
   <p class="author subtitle">{book.enriched.authors[0]}</p>
-  <h3 class="title">{book.enriched.title}</h3>
+  <h3 class="title">{book.title}</h3>
 </a>
 
 <style lang="scss">
