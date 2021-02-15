@@ -12,10 +12,16 @@
   import { booksClient } from "../../api-client/books";
   import type { Book } from "../../api/routes/books/books.type";
   import Button from "../../components/Button.svelte";
+  import Dropdown from "../../components/Dropdown.svelte";
+  import DropdownItem from "../../components/DropdownItem.svelte";
 
   export let book: Book;
 
   $: tags = [...book.enriched.categories, ...book.bookshelves];
+  $: epubImages = book.formats.find((f) => f.fileLink.includes("epub.images"));
+  $: epubNoImages = book.formats.find((f) => f.fileLink.includes("epub.noimages"));
+  $: kindleImages = book.formats.find((f) => f.fileLink.includes("kindle.images"));
+  $: kindleNoImages = book.formats.find((f) => f.fileLink.includes("kindle.noimages"));
 </script>
 
 <div class="book-details">
@@ -38,7 +44,24 @@
 
     <div class="mt10">
       <Button href="/book/{book._id}/read" type="primary">Read now</Button>
-      <Button href="/book/{book._id}/download" type="primary">Download</Button>
+      <Button type="primary">
+        Download
+        <Dropdown>
+          {#if epubImages}
+            <DropdownItem href={epubImages.fileLink}>Epub with images</DropdownItem>
+          {/if}
+          {#if epubNoImages}
+            <DropdownItem href={epubNoImages.fileLink}>Epub no images</DropdownItem>
+          {/if}
+          {#if kindleImages}
+            <DropdownItem href={kindleImages.fileLink}>Kindle with images</DropdownItem>
+          {/if}
+          {#if kindleNoImages}
+            <DropdownItem href={kindleNoImages.fileLink}>Kindle no images</DropdownItem>
+          {/if}
+          <DropdownItem href={book.formats[0].fileLink}>Plain text file</DropdownItem>
+        </Dropdown>
+      </Button>
     </div>
   </div>
 </div>
@@ -46,6 +69,7 @@
 <style lang="scss">
   .book-details {
     display: flex;
+    margin-bottom: 300px;
 
     .left-side {
       width: 33.333%;

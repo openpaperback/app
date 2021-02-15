@@ -84,6 +84,7 @@ export async function getGutenbergText(url: string, bookId: string) {
   doc.querySelectorAll("meta").forEach((el) => el.remove());
   doc.querySelectorAll("style").forEach((el) => el.remove());
   doc.querySelectorAll("link").forEach((el) => el.remove());
+  // doc.querySelectorAll("table[summary]").forEach((el) => el.remove());
 
   doc
     .querySelectorAll(`a`)
