@@ -1,6 +1,6 @@
 {
-  "name": "GutenPlus",
-  "description": "GutenPlus",
+  "name": "app",
+  "description": "app",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",

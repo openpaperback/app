@@ -22,6 +22,7 @@
   $: epubNoImages = book.formats.find((f) => f.fileLink.includes("epub.noimages"));
   $: kindleImages = book.formats.find((f) => f.fileLink.includes("kindle.images"));
   $: kindleNoImages = book.formats.find((f) => f.fileLink.includes("kindle.noimages"));
+  $: txt = book.formats.find((f) => f.fileLink.endsWith(".txt"));
 </script>
 
 <div class="book-details">
@@ -59,7 +60,10 @@
           {#if kindleNoImages}
             <DropdownItem href={kindleNoImages.fileLink}>Kindle no images</DropdownItem>
           {/if}
-          <DropdownItem href={book.formats[0].fileLink}>Plain text file</DropdownItem>
+
+          {#if txt}
+            <DropdownItem href={txt.fileLink}>Plain text file</DropdownItem>
+          {/if}
         </Dropdown>
       </Button>
     </div>
