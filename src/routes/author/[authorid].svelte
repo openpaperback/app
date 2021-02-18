@@ -19,10 +19,45 @@
 </script>
 
 <div class="collection">
-  <h1 class="serif">{author.name}</h1>
-  <p>{@html author.wiki.extract}</p>
-  <p>
-    <a target="_blank" href={author.wiki.url}>Read more on Wikipedia</a>
-  </p>
+  <div class="author">
+    <div class="left-side">
+      <h1 class="serif">{author.name}</h1>
+      <p>{@html author.wiki.extract}</p>
+      <p>
+        <a target="_blank" href={author.wiki.url}>Read more on Wikipedia</a>
+      </p>
+    </div>
+    <div class="right-side">
+      <img src={author.wiki.thumbnail} alt="" />
+    </div>
+  </div>
+
+  <h1 class="serif">Books by {author.name}</h1>
+
   <BookList {books} />
 </div>
+
+<style lang="scss">
+  .author {
+    display: flex;
+    margin-bottom: 20px;
+
+    .right-side {
+      width: 33.333%;
+      display: flex;
+      justify-content: center;
+
+      img {
+        object-fit: cover;
+        width: 200px;
+        height: 250px;
+        box-shadow: rgba(0, 0, 0, 0.3) 5px 0px 20px;
+        border-radius: 2px;
+      }
+    }
+
+    .left-side {
+      width: 66.666%;
+    }
+  }
+</style>
