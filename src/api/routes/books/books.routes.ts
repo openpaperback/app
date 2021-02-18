@@ -1,20 +1,8 @@
 import type { Response } from "express";
 import { getIntInRangeFromString } from "../../utils/number";
 import { BookModel } from "./books.model";
-import { enrichBooks, enrichOneBook, getGutenbergText, getSorting } from "./books.service";
-import type { GetRequest, ListRequest, ReadRequest } from "./books.type";
-
-function getSearch(text?: string) {
-  if (!text) {
-    return {};
-  }
-
-  const escaped = text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-  const regex = new RegExp(escaped, "gi");
-  return {
-    $or: [{ title: regex }, { author: regex }],
-  };
-}
+import { enrichBooks, enrichOneBook, getGutenbergText, getSearch, getSorting } from "./books.service";
+import type { GetRequest, ListByAuthorRequest, ListRequest, ReadRequest } from "./books.type";
 
 async function list(req: ListRequest, res: Response) {
   const skip = getIntInRangeFromString(req.query.skip, 0);
@@ -23,6 +11,20 @@ async function list(req: ListRequest, res: Response) {
   const search = getSearch(req.query.search);
 
   const result = await BookModel.find(search).skip(skip).limit(limit).sort(sort);
+  const books = await enrichBooks(result);
+
+  res.send(books);
+}
+
+async function listByAuthor(req: ListByAuthorRequest, res: Response) {
+  const authorId = parseInt(req.params.authorId);
+  const sort = getSorting("number_of_downloads", "desc");
+
+  const result = await BookModel.find({
+    gutenberg_author_id: authorId,
+    language: "en",
+  }).sort(sort);
+
   const books = await enrichBooks(result);
 
   res.send(books);
@@ -55,4 +57,4 @@ async function getText(req: ReadRequest, res: Response) {
   res.send(text);
 }
 
-export const bookRoutes = { list, get, getText };
+export const bookRoutes = { list, listByAuthor, get, getText };

@@ -18,6 +18,12 @@ async function list(params: ListParams) {
   return result.data;
 }
 
+async function listByAuthor(authorId: string) {
+  const url = `/book/author/${authorId}`;
+  const result = await api.get<Book[]>(url);
+  return result.data;
+}
+
 async function get(id: string) {
   const result = await api.get<Book>(`/book/${id}`);
   return result.data;
@@ -28,4 +34,4 @@ async function getText(id: string) {
   return result.data;
 }
 
-export const booksClient = { get, list, getText };
+export const booksClient = { get, list, listByAuthor, getText };

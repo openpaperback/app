@@ -3,12 +3,13 @@ import type { Document } from "mongoose";
 
 export interface Book extends Document {
   gutenberg_id: number;
+  gutenberg_author_id: number;
   date_issued: string;
   number_of_downloads: number;
   title: string;
   doc_type: string;
   language: string[];
-  author: string;
+  author: string[];
   formats: [
     {
       fileType: string;
@@ -83,6 +84,15 @@ export type ListRequest = Request<
     sortDir: string;
     search: string;
   }
+>;
+
+export type ListByAuthorRequest = Request<
+  {
+    authorId: string;
+  },
+  unknown,
+  unknown,
+  unknown
 >;
 
 export type GetRequest = Request<{ bookId: string }, unknown, unknown, unknown>;

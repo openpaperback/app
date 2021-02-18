@@ -30,7 +30,9 @@
     <div class="cover" style="background-image: url({book.enriched.thumbnail || ''})" alt="Book cover" />
   </div>
   <div class="right-side">
-    <p class="author subtitle m0">{book.enriched.authors[0]}</p>
+    <a class="author subtitle m0" href={`/author/${book.gutenberg_author_id}`}>
+      {book.enriched.authors[0]}
+    </a>
     <h1 class="title serif">{book.enriched.title}</h1>
     <div>{book.enriched.description}</div>
 

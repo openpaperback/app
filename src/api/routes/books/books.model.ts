@@ -3,12 +3,13 @@ import type { Book } from "./books.type";
 
 const BookSchema = new Schema({
   gutenberg_id: Number,
+  gutenberg_author_id: Number,
   date_issued: String,
   number_of_downloads: Number,
   title: String,
   doc_type: String,
   language: [String],
-  author: String,
+  author: [String],
   formats: [{ fileType: String, fileLink: String }],
   publisher: String,
   rights: String,

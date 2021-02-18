@@ -153,3 +153,16 @@ function stripHeaders(text: string) {
 
   return out.join("\n");
 }
+
+export function getSearch(text?: string) {
+  if (!text) {
+    return { language: "en" };
+  }
+
+  const escaped = text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  const regex = new RegExp(escaped, "gi");
+  return {
+    $or: [{ title: regex }, { author: regex }],
+    language: "en",
+  };
+}

@@ -17,13 +17,14 @@
   <base href="/book/{bookid}/read" />
 </svelte:head>
 
-<div class="read serif">{@html text}</div>
+<div class="read">{@html text}</div>
 
 <style lang="scss">
   .read {
     max-width: 500px;
     margin: 0 auto;
     font-size: 18px;
+    font-family: Georgia, "Times New Roman", Times, serif;
     content-visibility: auto;
   }
 </style>
