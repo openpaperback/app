@@ -10,6 +10,7 @@
     "validate": "svelte-check --ignore src/node_modules/@sapper"
   },
   "dependencies": {
+    "@popperjs/core": "^2.7.0",
     "apicache": "^1.5.3",
     "axios": "^0.21.1",
     "compression": "^1.7.1",
