@@ -62,6 +62,7 @@ code {
 
 .read > * {
   width: 100% !important;
+  content-visibility: auto;
 }
 
 .read pre {
