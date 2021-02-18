@@ -3,7 +3,6 @@ import express from "express";
 import compression from "compression";
 import * as sapper from "@sapper/server";
 import mongoose from "mongoose";
-import morgan from "morgan";
 import { router } from "./api/routes";
 
 const { PORT, NODE_ENV } = process.env;
@@ -16,7 +15,6 @@ async function main() {
 
   router(app);
 
-  app.use(morgan("tiny"));
   app.use(compression({ threshold: 0 }));
   app.use(sirv("static", { dev }));
   app.use(sapper.middleware());
