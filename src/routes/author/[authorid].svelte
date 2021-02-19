@@ -34,7 +34,7 @@
 
   <h1 class="serif">Books by {author.aliases[0]}</h1>
 
-  <BookList {books} />
+  <BookList previewLimit={1000} {books} />
 </div>
 
 <style lang="scss">

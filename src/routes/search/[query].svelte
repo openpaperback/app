@@ -18,5 +18,5 @@
 <div class="collection">
   <h1 class="serif">Search results</h1>
 
-  <BookList {books} />
+  <BookList previewLimit={1000} {books} />
 </div>

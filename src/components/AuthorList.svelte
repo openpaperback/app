@@ -3,7 +3,7 @@
   import AuthorItem from "./AuthorItem.svelte";
 
   export let authors: Author[];
-  const previewLimit = 5;
+  export let previewLimit = 5;
   let showAll = false;
 
   $: visibleAuthors = showAll ? authors : authors.slice(0, previewLimit);
