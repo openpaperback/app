@@ -9,5 +9,6 @@ export function router(app: Application) {
   app.get("/api/book/:bookId", bookRoutes.get);
   app.get("/api/book/:bookId/text", cache("5 minutes"), bookRoutes.getText);
 
+  app.get("/api/author/top", authorRoutes.getMostDownloaded);
   app.get("/api/author/:authorId", authorRoutes.get);
 }

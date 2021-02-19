@@ -21,7 +21,7 @@
 <div class="collection">
   <div class="author">
     <div class="left-side">
-      <h1 class="serif">{author.name}</h1>
+      <h1 class="serif">{author.aliases[0]}</h1>
       <p>{@html author.wiki.extract}</p>
       <p>
         <a target="_blank" href={author.wiki.url}>Read more on Wikipedia</a>
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <h1 class="serif">Books by {author.name}</h1>
+  <h1 class="serif">Books by {author.aliases[0]}</h1>
 
   <BookList {books} />
 </div>
@@ -46,6 +46,7 @@
       width: 33.333%;
       display: flex;
       justify-content: center;
+      align-content: center;
 
       img {
         object-fit: cover;

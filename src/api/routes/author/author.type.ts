@@ -1,5 +1,5 @@
 import type { Request } from "express";
-import type { Document } from "mongoose";
+import type { Document, Mongoose } from "mongoose";
 
 export interface Author extends Document {
   gutenberg_id: number;
@@ -73,6 +73,12 @@ export type WikiResult = {
   thumbnail: string;
   url: string;
   extract: string;
+};
+
+export type BookAggregate = {
+  _id: number;
+  totalDownloads: number;
+  count: number;
 };
 
 export type GetRequest = Request<

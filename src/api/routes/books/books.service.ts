@@ -155,14 +155,16 @@ function stripHeaders(text: string) {
 }
 
 export function getSearch(text?: string) {
+  const baseQuery = { language: "en", doc_type: "Text" };
+
   if (!text) {
-    return { language: "en" };
+    return baseQuery;
   }
 
   const escaped = text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
   const regex = new RegExp(escaped, "gi");
   return {
+    ...baseQuery,
     $or: [{ title: regex }, { author: regex }],
-    language: "en",
   };
 }
