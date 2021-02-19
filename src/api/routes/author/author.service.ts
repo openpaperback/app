@@ -31,6 +31,7 @@ export async function getAuthorWiki(name: string): Promise<WikiResult | undefine
       extract: summaryResult.extract,
     };
   } catch (error) {
+    console.error(`Could not resolve wiki for: ${name}`);
     return undefined;
   }
 }

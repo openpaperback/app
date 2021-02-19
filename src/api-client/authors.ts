@@ -7,7 +7,7 @@ async function get(id: string) {
 }
 
 async function getMostDownloaded() {
-  const result = await api.get<Author>(`/author/top`);
+  const result = await api.get<Author[]>(`/author/top`);
   return result.data;
 }
 

@@ -3,12 +3,24 @@
   import BookItem from "./BookItem.svelte";
 
   export let books: Book[];
+  const previewLimit = 9;
+  let showAll = false;
+
+  $: visibleBooks = showAll ? books : books.slice(0, previewLimit);
 </script>
 
 <div class="book-list">
-  {#each books as book}
+  {#each visibleBooks as book}
     <BookItem {book} />
   {/each}
+</div>
+
+<div class="more" on:click={() => (showAll = !showAll)}>
+  {#if showAll}
+    Show less books <i class="fas fa-angle-up" />
+  {:else}
+    Show more books <i class="fas fa-angle-down" />
+  {/if}
 </div>
 
 <style lang="scss">
@@ -16,5 +28,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+
+  .more {
+    cursor: pointer;
+    padding: 20px 0;
+    text-align: right;
   }
 </style>
