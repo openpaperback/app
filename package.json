@@ -8,7 +8,8 @@
     "export": "sapper export --legacy",
     "start": "node __sapper__/build",
     "validate": "svelte-check --ignore src/node_modules/@sapper",
-    "pm2": "pm2 start npm --name \"openpaperback\" -- start"
+    "pm2": "pm2 start npm --name \"openpaperback\" -- start",
+    "pm2:delete": "pm2 delete openpaperback"
   },
   "dependencies": {
     "apicache": "^1.5.3",
