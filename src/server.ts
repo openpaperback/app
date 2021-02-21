@@ -6,7 +6,7 @@ import compression from "compression";
 import * as sapper from "@sapper/server";
 import mongoose from "mongoose";
 import { router } from "./api/routes";
-import { config } from "./config";
+import { serverConfig } from "./server.config";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
@@ -30,7 +30,7 @@ async function main() {
 async function establishDatabase() {
   try {
     console.log("Connecting to database...");
-    await mongoose.connect(config.MONGO_URL, {
+    await mongoose.connect(serverConfig.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
