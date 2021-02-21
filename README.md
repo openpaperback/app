@@ -2,7 +2,7 @@
 
 ## To do:
 
-- [ ] Top authors
+- [x] Top authors
 - [ ] Chapters in the side-bar while reading
 - [ ] Credits to Gutenberg
 - [ ] About page

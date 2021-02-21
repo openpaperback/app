@@ -1,7 +1,12 @@
 <svelte:head>
-	<title>About</title>
+  <title>About</title>
 </svelte:head>
 
-<h1>About this site</h1>
+<h1>About</h1>
 
-<p>This is the 'about' page. There's not much here.</p>
+<div class="f18">
+  <p class="sans">
+    Openpaperback is an open source project which has the mission of bringing amazing literary works out from
+    obscurity, and make them easily available for everyone.
+  </p>
+</div>

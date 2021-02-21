@@ -14,7 +14,7 @@
 <nav>
   <ul>
     <li>
-      <a class="logo" href="/">gutenplus</a>
+      <a class="logo" href="/">openpaperback</a>
     </li>
   </ul>
   <div class="search">

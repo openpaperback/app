@@ -1,9 +1,12 @@
+require("dotenv").config();
+
 import sirv from "sirv";
 import express from "express";
 import compression from "compression";
 import * as sapper from "@sapper/server";
 import mongoose from "mongoose";
 import { router } from "./api/routes";
+import { config } from "./config";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
@@ -27,7 +30,7 @@ async function main() {
 async function establishDatabase() {
   try {
     console.log("Connecting to database...");
-    await mongoose.connect("mongodb://localhost:27017/gutenbooks", {
+    await mongoose.connect(config.MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,

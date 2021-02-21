@@ -2,7 +2,6 @@ import axios from "axios";
 import { BookModel } from "../books/books.model";
 import { AuthorModel } from "./author.model";
 import type { Author, BookAggregate, WikiResult, WikiSearchResponse, WikiSummary } from "./author.type";
-import { isEmpty } from "lodash";
 
 export async function getAuthorWiki(name: string): Promise<WikiResult | undefined> {
   try {
@@ -37,6 +36,7 @@ export async function getAuthorWiki(name: string): Promise<WikiResult | undefine
 }
 
 export async function getTopAuthors(): Promise<Author[]> {
+  const ignoreAuthors = [null, 37, 116, 216];
   const groups = await BookModel.aggregate<BookAggregate>([
     {
       $group: {
@@ -45,7 +45,7 @@ export async function getTopAuthors(): Promise<Author[]> {
         count: { $sum: 1 },
       },
     },
-    { $match: { _id: { $nin: [null, 37] } } },
+    { $match: { _id: { $nin: ignoreAuthors } } },
     { $sort: { totalDownloads: -1 } },
   ]).limit(15);
 

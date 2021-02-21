@@ -23,6 +23,10 @@
     font-family: "Open Sans", serif;
   }
 
+  :global(.f18) {
+    font-size: 18px;
+  }
+
   main {
     position: relative;
     max-width: 1120px;
