@@ -25,6 +25,7 @@
     "morgan": "^1.10.0",
     "node-html-parser": "^2.1.0",
     "polka": "next",
+    "sapper-environment": "^1.0.1",
     "sass": "^1.32.6",
     "sirv": "^1.0.0"
   },
