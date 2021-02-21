@@ -24,6 +24,7 @@ if [ $CURRENT != $PREVIOUS ]; then
   npm install
   npm run build
 
+  cp -a ./__sapper__        $TARGET
   cp -a ./static            $TARGET
   cp ./package.json         $TARGET
   cp ./package-lock.json    $TARGET
