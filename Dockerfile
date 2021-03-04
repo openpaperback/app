@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . .
 
+ENV SAPPER_APP_API_URL="https://opb.nueleanu.com/api"
+
 RUN npm install
 RUN npm run build
 
