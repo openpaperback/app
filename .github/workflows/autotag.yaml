@@ -1,0 +1,48 @@
+name: Automated tagging
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout Git repo
+        uses: actions/checkout@master
+      - name: Automated Version Bump
+        id: versionBump
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          output-file: false
+          tag-prefix: ""
+          skip-on-empty: "false"
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KUBERNETES_SSH_KEY_PRIV }}
+          known_hosts: |
+            github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCflBrzSD7/sUY+6SrKxGmA/pIyExDVdwABIeyfAVE5Gv+TRfIZf/pO8veiP+72QfPikll7ImUTE8xAx6pgKpUZOzC4WYeeeM0ojDUaC/YdhPyfCjI/KD5bAYHUHDm3N5GVWHDy0igzTXDkdw2zt6Zuf/5TJLNW4CwmQZHbjvBOnwamXfdpNqSkkpNEAYFQ9VlDMfL9r++pKfVcFbTpU+I60yaFSEAv4Gu1Yd49UunciHj0dmOOEc1Os8xYUFgUqlQAm9aT88ICIbEg5cgYC63FjPOkP+tni0FvcaUaNMo5FLgaVzKaKsc1ubm7JLq3vTZD6CLYmrSzPqUEuoHT14K8xPwBxVSufKvH9cVz9Vxx43YsWgPLK67xYUHNgDcGlOnv0Q/Ws3U95ygtJ5SqAQVItRBwT7pXuKCTQAybtEKCML/atqffwEP0iSvHxP2kZYo7bro0YeSWXyAmTryGhGtRbLsoeg2JWNa4bmE1um8yyO3Lvxi+G84SqQXKBaBfw0mQnEAFQeUGAKr3dlqcO5PrOHum32kqPjl29bHDVbQ0NDOjgLPY2z8gM73v7xUGcVA3enfpfjCCqwsRNyN57/PW3erHRVpyCkEhBamogH3+1sW0zQtAsggOQ6DjWSTGL95RTJsD1tx4Y+tvVKTfZH2aTF9TgeOWaTovZgg+9xiVPw== mihai@nueleanu.com
+      - name: update repo
+        run: |
+          # VARIABLES
+          TAG="${{ steps.versionBump.outputs.tag }}"
+          URL="git@github.com:MihaiNueleanu/kubernetes.git"
+
+          # SETUP
+          git config --global user.email "robot@nueleanu.com"
+          git config --global user.name "Robot"
+          git clone $URL
+          cd kubernetes
+
+          # CHANGES
+          sed -i "s/release-.*$/release-$TAG/" ./opb-app/deployment.yaml
+
+          # PUSH
+          git remote set-url origin $URL
+          git add .
+          git commit -m "Release openpaperback app version $TAG"
+          git push
