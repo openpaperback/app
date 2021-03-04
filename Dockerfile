@@ -11,10 +11,10 @@ FROM node:10-alpine as runner
 
 WORKDIR /app
 
-COPY --from=builder /app/package.json .
-COPY --from=builder /app/package-lock.json .
-COPY --from=builder /app/__sapper__ .
-COPY --from=builder /app/static .
+COPY --from=builder /app/package.json package.json
+COPY --from=builder /app/package-lock.json package-lock.json
+COPY --from=builder /app/__sapper__ __sapper__
+COPY --from=builder /app/static static
 
 RUN npm install --production
 
