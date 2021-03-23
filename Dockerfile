@@ -2,7 +2,7 @@ FROM node:10-alpine as builder
 
 WORKDIR /app
 
-ENV SAPPER_APP_API_URL="https://opb.nueleanu.com/api"
+ENV SAPPER_APP_API_URL="https://openpaperback.com/api"
 
 COPY package.json package.json
 COPY package-lock.json package-lock.json
