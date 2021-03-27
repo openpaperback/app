@@ -1,20 +1,24 @@
 <script context="module" lang="ts">
   export async function preload({ params }) {
     let bookid = params.bookid;
-    const text = await booksClient.getText(bookid);
-    return { text, bookid };
+
+    const [text, book] = await Promise.all([booksClient.getText(bookid), booksClient.get(bookid)]);
+    return { text, book, bookid };
   }
 </script>
 
 <script lang="ts">
   import { booksClient } from "../../../api-client/books";
+  import type { Book } from "../../../api/routes/books/books.type";
 
   export let bookid: string;
+  export let book: Book;
   export let text: string;
 </script>
 
 <svelte:head>
   <base href="/book/{bookid}/read" />
+  <title>{book.title} | openpaperback</title>
 </svelte:head>
 
 <div class="read">{@html text}</div>

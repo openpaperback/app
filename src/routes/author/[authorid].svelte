@@ -18,6 +18,10 @@
   export let author: Author;
 </script>
 
+<svelte:head>
+  <title>{author.aliases[0]} | openpaperback</title>
+</svelte:head>
+
 <div class="collection">
   <div class="author">
     <div class="left-side">

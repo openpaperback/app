@@ -24,7 +24,7 @@
 </script>
 
 <svelte:head>
-  <title>Gutenplus | Home</title>
+  <title>openpaperback | home</title>
 </svelte:head>
 
 <div class="collection">

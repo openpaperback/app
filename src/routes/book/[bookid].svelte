@@ -25,6 +25,10 @@
   $: txt = book.formats.find((f) => f.fileLink.endsWith(".txt"));
 </script>
 
+<svelte:head>
+  <title>{book.title} | openpaperback</title>
+</svelte:head>
+
 <div class="book-details">
   <div class="left-side">
     <div class="cover" style="background-image: url({book.enriched.thumbnail || ''})" alt="Book cover" />
