@@ -1,18 +1,18 @@
 <script context="module" lang="ts">
   export async function preload() {
-    const topBooks = await booksClient.list({});
+    const topBooks = await booksClient.list({ limit: 21 });
     return { topBooks };
   }
 </script>
 
 <script lang="ts">
-  import type { Book } from "../api/routes/books/books.type";
-  import { booksClient } from "../api-client/books";
-  import BookList from "../components/BookList.svelte";
-  import type { Author } from "../api/routes/author/author.type";
   import { onMount } from "svelte";
   import { authorsClient } from "../api-client/authors";
+  import { booksClient } from "../api-client/books";
+  import type { Author } from "../api/routes/author/author.type";
+  import type { Book } from "../api/routes/books/books.type";
   import AuthorList from "../components/AuthorList.svelte";
+  import BookList from "../components/BookList.svelte";
 
   export let topBooks: Book[];
 
