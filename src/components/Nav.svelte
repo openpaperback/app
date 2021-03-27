@@ -14,7 +14,10 @@
 <nav>
   <ul>
     <li>
-      <a class="logo" href="/">openpaperback</a>
+      <a class="logo" href="/">
+        <img src="/logo.svg" alt="logo" />
+        openpaperback
+      </a>
     </li>
   </ul>
   <div class="search">
@@ -48,6 +51,13 @@
     line-height: 72px;
     font-size: 1.2em;
     padding: 0 1em;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 10px;
+      max-height: 35px;
+    }
   }
 
   .search {
