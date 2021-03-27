@@ -56,7 +56,7 @@
 
     img {
       margin-right: 10px;
-      max-height: 35px;
+      max-height: 25px;
     }
   }
 
