@@ -168,3 +168,10 @@ export function getSearch(text?: string) {
     $or: [{ title: regex }, { author: regex }],
   };
 }
+
+export function hackOrigin(gutenbergId: number, originalUrl: string) {
+  const idDigits = String(gutenbergId).slice(0, -1).split("").join("/");
+  return originalUrl
+    .replace("https://www.gutenberg.org/files", "https://gutenberg.pglaf.org")
+    .replace(String(gutenbergId), `${idDigits}/${gutenbergId}`);
+}

@@ -1,7 +1,14 @@
 import type { Response } from "express";
 import { getIntInRangeFromString } from "../../utils/number";
 import { BookModel } from "./books.model";
-import { enrichBooks, enrichOneBook, getGutenbergText, getSearch, getSorting } from "./books.service";
+import {
+  enrichBooks,
+  enrichOneBook,
+  getGutenbergText,
+  getSearch,
+  getSorting,
+  hackOrigin,
+} from "./books.service";
 import type { GetRequest, ListByAuthorRequest, ListRequest, ReadRequest } from "./books.type";
 
 async function list(req: ListRequest, res: Response) {
@@ -43,17 +50,11 @@ async function getText(req: ReadRequest, res: Response) {
   const { bookId } = req.params;
 
   const book = await BookModel.findById(bookId);
+  const bookLink = book.formats.find((b) => b.fileLink.endsWith(".htm"));
+  if (!bookLink) return res.sendStatus(404);
 
-  const bookLink = book.formats.find((b) => {
-    return b.fileLink.endsWith(".htm");
-  });
-
-  if (!bookLink) {
-    return res.sendStatus(404);
-  }
-
-  const text = await getGutenbergText(bookLink.fileLink, bookId);
-
+  const url = hackOrigin(book.gutenberg_id, bookLink.fileLink);
+  const text = await getGutenbergText(url, bookId);
   res.send(text);
 }
 
