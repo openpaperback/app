@@ -12,19 +12,16 @@
 </script>
 
 <nav>
-  <ul>
-    <li>
-      <a class="logo" href="/">
-        <img src="/logo.svg" alt="logo" />
-        openpaperback
-      </a>
-    </li>
-  </ul>
+  <a class="logo" href="/">
+    <img src="/logo.svg" alt="logo" />
+    openpaperback
+  </a>
+
   <div class="search">
     <i class="fas fa-search" />
     <input type="text" on:keypress={onKeyPress} bind:value={search} />
   </div>
-  <ul>
+  <ul class="menu">
     <li>
       <a aria-current={segment === undefined ? "page" : undefined} href=".">home</a>
     </li>
@@ -50,7 +47,7 @@
     height: 72px;
     line-height: 72px;
     font-size: 1.2em;
-    padding: 0 1em;
+    padding: 0 2em;
     display: flex;
     align-items: center;
 
@@ -103,6 +100,16 @@
     content: "";
     display: block;
     clear: both;
+  }
+
+  @media screen and (max-width: 600px) {
+    .menu {
+      display: none;
+    }
+
+    .logo {
+      padding: 0 1em;
+    }
   }
 
   li {

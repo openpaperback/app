@@ -88,6 +88,15 @@
     .right-side {
       width: 66.666%;
     }
+
+    @media screen and (max-width: 800px) {
+      flex-direction: column;
+
+      .left-side,
+      .right-side {
+        width: 100%;
+      }
+    }
   }
 
   .tags {

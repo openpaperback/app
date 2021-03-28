@@ -64,5 +64,17 @@
     .left-side {
       width: 66.666%;
     }
+
+    @media screen and (max-width: 800px) {
+      flex-direction: column-reverse;
+
+      .left-side,
+      .right-side {
+        width: 100%;
+      }
+      .right-side {
+        margin-bottom: 20px;
+      }
+    }
   }
 </style>

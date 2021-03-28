@@ -21,6 +21,14 @@
     align-content: center;
     text-decoration: none;
 
+    @media screen and (max-width: 900px) {
+      width: 50%;
+    }
+
+    @media screen and (max-width: 550px) {
+      width: 100%;
+    }
+
     &:hover {
       .cover {
         transform: scale(1.1);
