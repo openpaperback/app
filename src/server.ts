@@ -35,7 +35,7 @@ async function establishDatabase() {
       useUnifiedTopology: true,
       useFindAndModify: false,
       useCreateIndex: true,
-      tls: false,
+      // tls: false,
     });
   } catch (error) {
     console.error("Error connecting to database");

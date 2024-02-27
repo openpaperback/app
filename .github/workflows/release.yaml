@@ -74,7 +74,7 @@ jobs:
         run: |
           # VARIABLES
           TAG="${{ steps.versionBump.outputs.tag }}"
-          URL="git@github.com:MihaiNueleanu/kubernetes.git"
+          URL="git@github.com:dotmethodme/kubernetes.git"
 
           # SETUP
           git config --global user.email "robot@nueleanu.com"
