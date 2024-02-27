@@ -30,13 +30,8 @@ async function main() {
 async function establishDatabase() {
   try {
     console.log("Connecting to database...");
-    await mongoose.connect(serverConfig.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-      // tls: false,
-    });
+    await mongoose.connect(serverConfig.MONGO_URL);
+    console.log("Connected to database");
   } catch (error) {
     console.error("Error connecting to database");
     console.error(error);
