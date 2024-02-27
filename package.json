@@ -1,7 +1,7 @@
 {
   "name": "app",
   "description": "app",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
