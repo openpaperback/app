@@ -83,7 +83,7 @@ jobs:
           cd kubernetes
 
           # CHANGES
-          sed -i "s/release-.*$/release-$TAG/" ./opb-app/deployment.yaml
+          sed -i "s/release-.*$/release-$TAG/" ./default/opb-app/deployment.yaml
 
           # PUSH
           git remote set-url origin $URL
